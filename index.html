@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="bg"></canvas>
+
+    <header>
+        <h1>Cloudflare</h1>
+        <p>Ochrana, rychlost a spolehlivost webových stránek</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Co je Cloudflare?</h2>
+            <p>
+                Cloudflare je společnost poskytující síťové a bezpečnostní služby pro webové stránky.
+                Pomáhá zrychlit načítání webů, chrání je před útoky a zvyšuje jejich dostupnost po celém světě.
+            </p>
+        </section>
+
+        <section>
+            <h2>K čemu Cloudflare slouží?</h2>
+            <p>
+                Cloudflare funguje mezi návštěvníkem a serverem. Filtruje škodlivý provoz,
+                ukládá obsah do své globální sítě a doručuje ho uživatelům z nejbližšího datového centra.
+                Díky tomu jsou stránky rychlejší a bezpečnější.
+            </p>
+        </section>
+
+        <section>
+            <h2>Vybrané služby Cloudflare</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>DDoS Protection</h3>
+                    <p>Chrání webové stránky před útoky zahlcujícími server.</p>
+                </div>
+
+                <div class="card">
+                    <h3>CDN</h3>
+                    <p>Zrychluje načítání webu ukládáním obsahu do datových center po celém světě.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Web Application Firewall (WAF)</h3>
+                    <p>Blokuje nebezpečné požadavky a chrání webové aplikace.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Projekt do školy – Cloudflare © 2026</p>
+        <p class="easter-egg">Six Seven Gigachad Skibidi Toilet Mango 🍋🚽🗿</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("bg");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+
+        for(let i = 0; i < 70; i++){
+            particles.push({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height,
+                r: Math.random()*3+1,
+                dx: (Math.random()-0.5)*0.5,
+                dy: (Math.random()-0.5)*0.5
+            });
+        }
+
+        function animate(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            particles.forEach(p=>{
+                ctx.beginPath();
+                ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+                ctx.fillStyle="rgba(0,255,255,0.6)";
+                ctx.fill();
+
+                p.x+=p.dx;
+                p.y+=p.dy;
+
+                if(p.x<0||p.x>canvas.width)p.dx*=-1;
+                if(p.y<0||p.y>canvas.height)p.dy*=-1;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener("resize",()=>{
+            canvas.width=window.innerWidth;
+            canvas.height=window.innerHeight;
+        });
+    </script>
+
+</body>
+</html>
